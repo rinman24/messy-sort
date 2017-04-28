@@ -10,7 +10,7 @@ LEADING_WHITESPACE = os.path.join(os.path.dirname(__file__), 'test_input/test_le
 TRAILING_WHITESPACE = os.path.join(os.path.dirname(__file__), 'test_input/test_trailing_whitespace.txt')
 WHITESPACE_BETWEEN = os.path.join(os.path.dirname(__file__), 'test_input/test_whitespace_between.txt')
 
-class TestReadInput:
+class TestReadInput(object):
     """Testing MessyList type for ability to read files."""
     truth_list = ['start', '-102', 'finish', '992484', 'bi$d', '&-?24#']
 
@@ -49,3 +49,35 @@ class TestReadInput:
         messy_list = MessyList(WHITESPACE_BETWEEN)
         assert messy_list.words == self.truth_list
 
+class TestCleanWords(object):
+    """Testing MessyList type for ability to clean words."""
+    truth_list = ['start', '-102', 'finish', '992484', 'bid', '-24']
+    def test_are_letters(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        letters = [messy_list.are_letters(i) for i in messy_list.words]
+        assert letters == [True, False, True, False, True, False]
+
+    def test_are_nums(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        numbers = [not messy_list.are_letters(i) for i in messy_list.words]
+        assert numbers == [False, True, False, True, False, True]
+    
+    def test_clean_up(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        messy_list.clean_up()
+        assert messy_list.words == self.truth_list
+
+    def test_letters_map(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        messy_list.clean_up()
+        assert messy_list.lett_idx == [0, 2, 4]
+
+    def test_nums_map(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        messy_list.clean_up()
+        assert messy_list.num_idx == [1, 3, 5]
