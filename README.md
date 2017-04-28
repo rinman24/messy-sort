@@ -36,12 +36,12 @@ In addition to the program and the test suite, write a short analysis of the alg
 ## Repo Directory Structure <a name="repo-directory-structure"></a>
 	├── README.md 
 	├── images
-	|  	└── insight_logo.png
+	|   └── insight_logo.png
 	├── src
-	|	├── __init__.py
-	|	└── messysort.py
+	|   ├── __init__.py
+	|   └── messysort.py
 	└── tests
-		└── test_messysort.py
-		
+	    └── test_messysort.py
+
 
 	
