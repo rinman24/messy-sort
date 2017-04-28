@@ -6,9 +6,10 @@ TESTDATA_FILENAME_01 = os.path.join(DIRNAME, 'test_input/test01.txt')
 BLANKDATA = os.path.join(DIRNAME, 'test_input/test_blank.txt')
 SPACEDATA = os.path.join(DIRNAME, 'test_input/test_spaces.txt')
 NEWLINE_DATA = os.path.join(os.path.dirname(__file__), 'test_input/test_newline.txt')
-LEADING_WHITESPACE = os.path.join(os.path.dirname(__file__), 'test_input/test_leading_whitespace.txt')
-TRAILING_WHITESPACE = os.path.join(os.path.dirname(__file__), 'test_input/test_trailing_whitespace.txt')
-WHITESPACE_BETWEEN = os.path.join(os.path.dirname(__file__), 'test_input/test_whitespace_between.txt')
+LEADING_WHITESPACE = os.path.join(DIRNAME, 'test_input/test_leading_whitespace.txt')
+TRAILING_WHITESPACE = os.path.join(DIRNAME, 'test_input/test_trailing_whitespace.txt')
+WHITESPACE_BETWEEN = os.path.join(DIRNAME, 'test_input/test_whitespace_between.txt')
+OUTPUTFILE = os.path.join(DIRNAME, 'test_output/output01.txt')
 
 class TestReadInput(object):
     """Testing MessyList type for ability to read files."""
@@ -86,15 +87,30 @@ class TestSortWords(object):
     """Docstring."""
 
     def test_letters_sort(self):
+        """Docstring."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         messy_list.clean_up()
         assert messy_list.sorted_letters() == ['bid', 'finish', 'start']
 
     def test_numbers_sort(self):
+        """Docstring."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         messy_list.clean_up()
         assert messy_list.sorted_numbers() == [-102, -24, 992484]
 
     def test_full_sort(self):
+        """Docstring."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         assert messy_list.full_sort() == ['bid', -102, 'finish', -24, 'start', 992484]
+
+class TestWriteOutput(object):
+    """Docstring."""
+
+    def test_write01(self):
+        """Docstring."""
+        messy_list = MessyList(TESTDATA_FILENAME_01)
+        messy_list.full_sort()
+        messy_list.write_output(OUTPUTFILE)
+        with open(OUTPUTFILE) as file_obj:
+            words = file_obj.read()
+        assert words == 'bid -102 finish -24 start 992484'

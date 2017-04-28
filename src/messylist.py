@@ -1,6 +1,7 @@
 """Module level docstring."""
 
 import re
+import sys
 
 class MessyList(object):
     """MessyList object."""
@@ -8,12 +9,12 @@ class MessyList(object):
         """Docstring."""
         with open(filepath) as file_obj:
             self.words = file_obj.read().split()
-            self.regex_not_letts = re.compile(r'[^a-zA-Z]')
-            self.regex_not_nums = re.compile(r'[^0-9-]')
-            self.regex_letts = re.compile(r'[a-zA-Z]')
-            self.regex_nums = re.compile(r'[0-9]')
-            self.lett_idx = []
-            self.num_idx = []
+        self.regex_not_letts = re.compile(r'[^a-zA-Z]')
+        self.regex_not_nums = re.compile(r'[^0-9-]')
+        self.regex_letts = re.compile(r'[a-zA-Z]')
+        self.regex_nums = re.compile(r'[0-9]')
+        self.lett_idx = []
+        self.num_idx = []
 
     def are_letters(self, word):
         """Docstring."""
@@ -48,6 +49,26 @@ class MessyList(object):
         for idx in self.num_idx:
             self.words[idx] = nums.pop()
         return self.words
+
+    def write_output(self, filepath):
+        """Docstring."""
+        with open(filepath, mode='w', encoding='utf-8') as myfile:
+            for word in self.words:
+                myfile.write(str(word) + ' ')
+            myfile.truncate(myfile.tell()-1)
+
+    def messy_sort(self, filepath):
+    	"""Docstring."""
+    	self.full_sort()
+    	self.write_output(filepath)
+
+if __name__ == '__main__':
+    messy_list = MessyList(sys.argv[1])
+    messy_list.messy_sort(sys.argv[2])
+
+
+
+
 
 
 
