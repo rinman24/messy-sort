@@ -39,9 +39,16 @@ In addition to the program and the test suite, write a short analysis of the alg
 	|   └── insight_logo.png
 	├── src
 	|   ├── __init__.py
-	|   └── messysort.py
+	|   └── messylist.py
 	└── tests
-	    └── test_messysort.py
-
+	    ├── test_messylist.py
+	    └── test_input
+	        ├── test_blank.txt
+	        ├── test_leading_whitespace.txt
+	        ├── test_newline.txt
+	        ├── test_spaces.txt
+	        ├── test_trailing_whitespace.txt
+	        ├── test_whitespace_between.txt
+	        └── test01.txt
 
 	
