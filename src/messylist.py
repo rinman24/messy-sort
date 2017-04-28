@@ -30,4 +30,25 @@ class MessyList(object):
                 self.words[idx] = re.sub(self.regex_not_nums, '', word)
         return self.words
 
+    def sorted_letters(self):
+        """Docstring."""
+        return sorted([self.words[i] for i in self.lett_idx])
+
+    def sorted_numbers(self):
+        """Docstring."""
+        return sorted([int(self.words[i]) for i in self.num_idx])
+
+    def full_sort(self):
+        """Docstring."""
+        self.clean_up()
+        letts = self.sorted_letters()[::-1]
+        nums = self.sorted_numbers()[::-1]
+        for idx in self.lett_idx:
+            self.words[idx] = letts.pop()
+        for idx in self.num_idx:
+            self.words[idx] = nums.pop()
+        return self.words
+
+
+
 
