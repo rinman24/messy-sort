@@ -57,57 +57,57 @@ class TestCleanWords(object):
     messy_list = MessyList(TESTDATA_FILENAME_01)
 
     def test_are_letters(self):
-        """Docstring."""
+        """Test if are_letters method can detect the location of messy letters."""
         letters = [self.messy_list.are_letters(i) for i in self.messy_list.words]
         assert letters == [True, False, True, False, True, False]
 
     def test_are_nums(self):
-        """Docstring."""
+        """Tes if not are_letters method can detect the location of messy ints."""
         numbers = [not self.messy_list.are_letters(i) for i in self.messy_list.words]
         assert numbers == [False, True, False, True, False, True]
     
     def test_clean_up(self):
-        """Docstring."""
+        """Test if clean up remove non-lettrs and non-numbers correctly."""
         self.messy_list.clean_up()
         assert self.messy_list.words == self.truth_list
 
     def test_letters_map(self):
-        """Docstring."""
+        """Test if clean_up corectly build letter indexing list."""
         self.messy_list.lett_idx = []
         self.messy_list.clean_up()
         assert self.messy_list.lett_idx == [0, 2, 4]
 
     def test_nums_map(self):
-        """Docstring."""
+        """Test if clean_up corectly build int indeing list."""
         self.messy_list.num_idx = []
         self.messy_list.clean_up()
         assert self.messy_list.num_idx == [1, 3, 5]
 
 class TestSortWords(object):
-    """Docstring."""
+    """Testing MessyList type for ability to perform messysort."""
 
     def test_letters_sort(self):
-        """Docstring."""
+        """Test if sorted_letters alphabetically sorts."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         messy_list.clean_up()
         assert messy_list.sorted_letters() == ['bid', 'finish', 'start']
 
     def test_numbers_sort(self):
-        """Docstring."""
+        """Test if sorted_numbers numerically sorts."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         messy_list.clean_up()
         assert messy_list.sorted_numbers() == [-102, -24, 992484]
 
     def test_full_sort(self):
-        """Docstring."""
+        """Test if full_sort corectly performs messysort."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         assert messy_list.full_sort() == ['bid', -102, 'finish', -24, 'start', 992484]
 
 class TestWriteOutput(object):
-    """Docstring."""
+    """Testing MessyList type for ability to write output."""
 
     def test_write01(self):
-        """Docstring."""
+        """Test if write_output corectly writes list to file."""
         messy_list = MessyList(TESTDATA_FILENAME_01)
         messy_list.full_sort()
         messy_list.write_output(OUTPUTFILE)
