@@ -8,7 +8,7 @@
 
 # Description <a name="description"></a>
 
-### Part 1: write a program to solve a problem
+### Part 1: Write a program to solve a problem
 
 Please write a program that takes a list of strings containing integers and words and returns a sorted version of the list. The goal is to sort this list in such a way that all words are in alphabetical order and all integers are in numerical order. Furthermore, if the nth element in the list is an integer it must remain an integer, and if it is a word it must remain a word. 
 
